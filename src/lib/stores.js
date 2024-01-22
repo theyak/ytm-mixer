@@ -7,6 +7,16 @@ import { writable } from 'svelte/store';
 export const login = writable(false);
 
 /**
+ * Set to true to enable the first OAuth modal.
+ */
+export const oAuthModalOne = writable(false);
+
+/**
+ * Set to true to enable the second OAuth modal.
+ */
+export const oAuthModalTwo = writable(false);
+
+/**
  * Flag indicating if user is successfully signed in to YouTube Music
  */
 export const isLoggedIn = writable(false);
