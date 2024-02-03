@@ -17,12 +17,10 @@
         }
 
         const data = JSON.parse(code);
-
         const result = await getTokenFromCode(data.device_code);
-
         localStorage.setItem("oauth-token", JSON.stringify(result));
 
-        $oauthModalTwo = false;
+        $oAuthModalTwo = false;
     }
 </script>
 

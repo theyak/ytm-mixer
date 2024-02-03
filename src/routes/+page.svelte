@@ -5,7 +5,7 @@
 	import LoginModal from "$lib/components/LoginModal.svelte";
 
 	onMount(async () => {
-		if (!YTM.hasYoutubeMusicCookie()) {
+		if (!YTM.hasYoutubeMusicCookie() && !YTM.hasYoutubeOAuth()) {
 			$login = true;
 			$isLoggedIn = false;
 			$playlists = [];

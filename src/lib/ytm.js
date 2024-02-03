@@ -2,8 +2,9 @@ function getOptions() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
-			"x-ytm-cookie": localStorage.getItem("x-ytm-cookie"),
+			"x-ytm-cookie": localStorage.getItem("x-ytm-cookie") || "",
 			"x-ytm-user": localStorage.getItem("x-ytm-user") || 0,
+			"x-oauth": localStorage.getItem("oauth-token") || "",
 		},
 	};
 
@@ -16,8 +17,9 @@ function postOptions(data) {
 		body: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json",
-			"x-ytm-cookie": localStorage.getItem("x-ytm-cookie"),
+			"x-ytm-cookie": localStorage.getItem("x-ytm-cookie") || "",
 			"x-ytm-user": localStorage.getItem("x-ytm-user") || 0,
+			"x-oauth": localStorage.getItem("oauth-token") || "",
 		},
 	};
 
@@ -41,6 +43,27 @@ export function hasYoutubeMusicCookie() {
 	}
 
 	if (cookie.indexOf("__Secure-3PAPISID") < 0) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Check if there is an OAuth token available.
+ */
+export function hasYoutubeOAuth() {
+	let token = localStorage.getItem("oauth-token");
+	if (!token) {
+		return false;
+	}
+
+	token = token.trim();
+	if (token.length <= 0) {
+		return false;
+	}
+
+	if (token.indexOf("access_token") < 0) {
 		return false;
 	}
 
