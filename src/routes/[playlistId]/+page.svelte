@@ -20,7 +20,7 @@
 	})()
 
 	onMount(async () => {
-		if (!YTM.hasYoutubeMusicCookie()) {
+		if (!YTM.hasYoutubeMusicCookie() && !YTM.hasYoutubeOAuth()) {
 			$login = true;
 			return;
 		}
@@ -183,7 +183,7 @@
 		{#if playlist}
 			{#if playlist.title}
 				<div class="flex justify-between">
-					<div class="flex flex-row gap-4 items-center">
+					<div class="flex flex-row gap-4 items-start">
 						{#if playlist.thumbnails}
 							<img src={playlist.thumbnails[0].url} alt="Playlist thumbnail" style={`width: ${playlist.thumbnails[0].width}px; height: ${playlist.thumbnails[0].height}px`} />
 						{/if}

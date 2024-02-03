@@ -2,8 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import { Button, Modal, Input, Textarea } from 'flowbite-svelte';
 	import { login, playlists, isLoggedIn } from "$lib/stores";
+	import { oAuthModalOne, oAuthModalTwo } from "$lib/stores";
 	import LoginRetryModal from "$lib/components/LoginRetryModal.svelte";
 	import * as YTM from '$lib/ytm.js';
+	import OauthModalOne from "$lib/components/OAuthModalOne.svelte";
+    import OauthModalTwo from "$lib/components/OAuthModalTwo.svelte";
 
 	let authUser;
 	let cookie;
@@ -29,6 +32,12 @@
 			retry = true;
 		}
 	}
+
+	function onOauthLogin() {
+		$oAuthModalOne = true;
+		$oAuthModalTwo = false;
+		$login = false;
+	}
 </script>
 
 <style lang="postcss">
@@ -44,7 +53,9 @@
 	}
 </style>
 
-<LoginRetryModal open={retry} on:close={() => {retry = false; $login = true}}/>
+<LoginRetryModal open={retry} on:close={() => {retry = false; $login = true}} />
+<OauthModalOne open={$oAuthModalOne} on:close={() => $oAuthModalOne = false} />
+<OauthModalTwo open={$oAuthModalTwo} on:close={() => $oAuthModalTwo = false} />
 
 <Modal title="Login" autoclose bind:open={$login} on:hide={() => dispatch("close")}>
 	<p>
@@ -83,7 +94,14 @@
 	</Input>
 
 	<svelte:fragment slot="footer">
-		<Button on:click={() => onLogin()}>Login</Button>
-		<Button color="alternative" on:click={() => $login = false}>Nevermind</Button>
+		<div class="flex justify-between w-full">
+			<div>
+				<Button on:click={() => onLogin()}>Login</Button>
+				<Button color="alternative" on:click={() => $login = false}>Nevermind</Button>
+			</div>
+			<div>
+				<Button on:click={() => onOauthLogin()}>Login with Google</Button>
+			</div>
+		</div>
 	</svelte:fragment>
 </Modal>
