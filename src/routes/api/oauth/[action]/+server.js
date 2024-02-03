@@ -77,9 +77,10 @@ async function refreshToken(url) {
         return new Response(JSON.stringify(response), { status: 400 });
     }
 
-    response.expiresAt = Date.now() + (response.expires_in * 1000);
+    token.access_token = response.access_token;
+    token.expiresAt = Date.now() + (response.expires_in * 1000);
 
-    return new Response(JSON.stringify(response));
+    return new Response(JSON.stringify(token));
 }
 
 export async function GET({params, url}) {

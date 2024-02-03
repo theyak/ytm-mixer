@@ -58,6 +58,7 @@ export function hasYoutubeMusicCookie() {
  */
 export function hasYoutubeOAuth() {
 	let token = localStorage.getItem("oauth-token");
+
 	if (!token) {
 		return false;
 	}
