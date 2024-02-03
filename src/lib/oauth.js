@@ -68,8 +68,8 @@ export async function getTokenFromCode(code) {
  *
  * @returns {object}
  */
-export async function refreshToken() {
-    const response = await fetch(`/api/oauth/refresh-token`, { method: "GET" });
+export async function refreshToken(token) {
+    const response = await fetch(`/api/oauth/refresh-token?token=${token}`, { method: "GET" });
     const data = await response.json();
     return data;
 }

@@ -44,6 +44,7 @@ async function getToken(url) {
         "code": deviceCode,
     });
 
+    response.poop = "hiu";
     if (response.error) {
         return new Response(JSON.stringify(response), { status: 400 });
     }
@@ -59,19 +60,36 @@ async function getUrl() {
     return new Response(JSON.stringify(code));
 }
 
-async function refreshToken() {
-    return new Response(JSON.stringify({
-        error: "Refresh token not implemented."
-    }), { status: 501 });
+/**
+ * Refresh token
+ * @param {string} The refresh token from the original token request
+ * @returns
+ */
+async function refreshToken(url) {
+    const token = url.searchParams.get("token");
+    const response = await post(OAUTH_TOKEN_URL, {
+        "client_secret": OAUTH_CLIENT_SECRET,
+        "grant_type": "refresh_token",
+        "refresh_token": token
+    });
+
+    if (response.error) {
+        return new Response(JSON.stringify(response), { status: 400 });
+    }
+
+    response.expiresAt = Date.now() + (response.expires_in * 1000);
+
+    return new Response(JSON.stringify(response));
 }
 
 export async function GET({params, url}) {
+    console.log(params, url);
     if (params.action === "get-url") {
         return getUrl();
     } else if (params.action === "get-token") {
         return getToken(url);
     } else if (params.action === "refresh-token") {
-        return refreshToken();
+        return refreshToken(url);
     }
 }
 
