@@ -27,6 +27,7 @@
 	function prepLogin() {
 		localStorage.removeItem("x-ytm-cookie");
 		localStorage.removeItem("x-ytm-user");
+		localStorage.removeItem("oauth-token");
 		$playlists = [];
 		$queue = [];
 		$hideDrawer = true;

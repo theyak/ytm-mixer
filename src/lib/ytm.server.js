@@ -8,7 +8,6 @@ export async function getAuth(headers) {
 	let ytma;
 
 	if (token) {
-		// TODO: Refresh token if near or after expire
 		ytma = new YtmClient(JSON.parse(token));
 	} else if (cookie) {
 		ytma = new YtmClient(cookie, user);

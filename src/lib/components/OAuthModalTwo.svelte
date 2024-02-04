@@ -30,6 +30,6 @@
     </p>
 
 	<svelte:fragment slot="footer">
-		<Button on:click={onContinue}>Continue</Button>
+		<Button on:click={async() => await onContinue()}>Continue</Button>
 	</svelte:fragment>
 </Modal>

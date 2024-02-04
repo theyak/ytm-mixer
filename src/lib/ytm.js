@@ -134,7 +134,7 @@ async function get(url) {
  * @return {id: string, name: string}
  */
 export async function createPlaylist(title, description = "", videoIds = []) {
-	const response = post("/api/playlists/create", {title, description, videoIds});
+	const response = await post("/api/playlists/create", {title, description, videoIds});
 	return response;
 }
 
@@ -170,6 +170,7 @@ export async function addTracksToPlaylist(playlistId, videoIds) {
  */
 export async function getPlaylists() {
 	const response = await get("/api/playlists");
+	console.log(response);
 	return response;
 }
 

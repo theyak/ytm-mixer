@@ -4,9 +4,15 @@ import {getAuth} from "$lib/ytm.server";
 export async function GET({request}) {
 	try {
 		const ytma = await getAuth(request.headers);
-		const playlists = await ytma.getLibraryPlaylists();
-		return new Response(JSON.stringify(playlists));
-	} catch (err) {
-		return new Response(JSON.stringify({error: err.message}));
+		if (ytma) {
+			const playlists = await ytma.getLibraryPlaylists();
+			return new Response(JSON.stringify(playlists));
+		} else {
+			throw new Error(JSON.stringify({code: 401, message: "UNAUTHORIZED"}));
+		}
+	} catch (error) {
+		console.log(error);
+		const message = JSON.parse(error.message);
+		return new Response(JSON.stringify({error: message}), {status: message.code});
 	}
 }
