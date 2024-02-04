@@ -6,7 +6,7 @@
 	import LoginRetryModal from "$lib/components/LoginRetryModal.svelte";
 	import * as YTM from '$lib/ytm.js';
 	import OauthModalOne from "$lib/components/OAuthModalOne.svelte";
-    import OauthModalTwo from "$lib/components/OAuthModalTwo.svelte";
+	import OauthModalTwo from "$lib/components/OAuthModalTwo.svelte";
 
 	let authUser;
 	let cookie;
@@ -38,22 +38,6 @@
 		$oAuthModalTwo = false;
 		$login = false;
 	}
-
-	async function loginWithOAuth() {
-		const result = await YTM.getPlaylists();
-		if (Array.isArray(result)) {
-			$isLoggedIn = true;
-			$playlists = result;
-			$login = false;
-			authUser = "";
-			cookie = "";
-			dispatch('login');
-		} else {
-			$isLoggedIn = false;
-			$playlists = null;
-			retry = true;
-		}
-	}
 </script>
 
 <style lang="postcss">
@@ -71,7 +55,7 @@
 
 <LoginRetryModal open={retry} on:close={() => {retry = false; $login = true}} />
 <OauthModalOne open={$oAuthModalOne} on:close={() => $oAuthModalOne = false} />
-<OauthModalTwo open={$oAuthModalTwo} on:close={async () => await loginWithOAuth()} />
+<OauthModalTwo open={$oAuthModalTwo} on:close={() => $oAuthModalTwo = false} />
 
 <Modal title="Login" autoclose bind:open={$login} on:hide={() => dispatch("close")}>
 	<p>

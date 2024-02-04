@@ -170,7 +170,6 @@ export async function addTracksToPlaylist(playlistId, videoIds) {
  */
 export async function getPlaylists() {
 	const response = await get("/api/playlists");
-	console.log(response);
 	return response;
 }
 

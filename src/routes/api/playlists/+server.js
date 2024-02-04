@@ -11,7 +11,6 @@ export async function GET({request}) {
 			throw new Error(JSON.stringify({code: 401, message: "UNAUTHORIZED"}));
 		}
 	} catch (error) {
-		console.log(error);
 		const message = JSON.parse(error.message);
 		return new Response(JSON.stringify({error: message}), {status: message.code});
 	}

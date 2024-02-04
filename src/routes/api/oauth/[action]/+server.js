@@ -84,7 +84,6 @@ async function refreshToken(url) {
 }
 
 export async function GET({params, url}) {
-    console.log(params, url);
     if (params.action === "get-url") {
         return getUrl();
     } else if (params.action === "get-token") {
