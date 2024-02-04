@@ -249,7 +249,7 @@
 				<SvgIcon><path d="M7 7v10l7-5zm9 10V7h-2v10z" /></SvgIcon>
 			</button>
 		</div>
-		{#if $queue[index]?.title}
+		{#if $queue[index] && $queue[index].title}
 			<div id="track-info">
 				<div class="flex flex-row items-center gap-2">
 					<img style="height:40px;width:40px" src={$queue[index].thumbnails[0].url} alt="Track Thumbnail" />
@@ -269,6 +269,8 @@
 		</div>
 	</div>
 </div>
+
+
 <div id="queue" class="fixed h-full w-full bg-black" style="--position: {queuePosition}">
 	<div class="flex flex-row gap-4 h-full max-h-full">
 		<div id="player" style="width: 50%" class="self-center"/>
@@ -282,7 +284,7 @@
 					on:keypress={() => {}}
 				>
 					<img style="width:60px; height:60px" src={track.thumbnails[0].url} alt="thumbnail" />
-					<div class="flex flex-row justify-between w-full">
+					<div class="flex flex-row justify-between w-full text-white">
 						<div>
 							<div class="title strong">{track.title}</div>
 							<div>
