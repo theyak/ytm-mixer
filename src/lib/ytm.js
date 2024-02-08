@@ -93,7 +93,12 @@ async function refreshOAuthToken() {
 	}
 
 	const result = await refreshToken(token.refresh_token);
-	localStorage.setItem("oauth-token", JSON.stringify(result));
+
+	const item = JSON.parse(localStorage.getItem("oauth-token"));
+	item.access_token = result.access_token;
+	item.expiresAt = result.expiresAt;
+
+	localStorage.setItem("oauth-token", JSON.stringify(item));
 }
 
 /**

@@ -8,7 +8,15 @@ export async function getAuth(headers) {
 	let ytma;
 
 	if (token) {
-		ytma = new YtmClient(JSON.parse(token));
+		try {
+			const parse = JSON.parse(token);
+			if (!parse || !parse.access_token || !parse.refresh_token || !parse.expiresAt) {
+				throw new Error("Invalid token value.");
+			}
+			ytma = new YtmClient(parse);
+		} catch {
+			throw new Error("Invalid token value.");
+		}
 	} else if (cookie) {
 		ytma = new YtmClient(cookie, user);
 		if (!ytma.sapiSid) {

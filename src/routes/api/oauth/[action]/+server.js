@@ -44,7 +44,6 @@ async function getToken(url) {
         "code": deviceCode,
     });
 
-    response.poop = "hiu";
     if (response.error) {
         return new Response(JSON.stringify(response), { status: 400 });
     }
@@ -77,10 +76,12 @@ async function refreshToken(url) {
         return new Response(JSON.stringify(response), { status: 400 });
     }
 
-    token.access_token = response.access_token;
-    token.expiresAt = Date.now() + (response.expires_in * 1000);
+    const result = {
+        access_token: response.access_token,
+        expiresAt: Date.now() + (response.expires_in * 1000),
+    }
 
-    return new Response(JSON.stringify(token));
+    return new Response(JSON.stringify(result));
 }
 
 export async function GET({params, url}) {

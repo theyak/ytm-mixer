@@ -11,7 +11,14 @@ export async function GET({request}) {
 			throw new Error(JSON.stringify({code: 401, message: "UNAUTHORIZED"}));
 		}
 	} catch (error) {
-		const message = JSON.parse(error.message);
+		let message = error.message;
+		if (error.message.indexOf("{") === 0) {
+			try {
+				message = JSON.parse(error.message);
+			} catch (e) {
+				// Do nothing.
+			}
+		}
 		return new Response(JSON.stringify({error: message}), {status: message.code});
 	}
 }
