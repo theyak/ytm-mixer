@@ -41,6 +41,6 @@
 		"lpad": "^3.0.0",
 		"node-fetch": "^3.3.2",
 		"ytmclient": "github:theyak/ytmclient",
-		"sha1": "^1.1.1",
+		"sha1": "^1.1.1"
 	}
 }
