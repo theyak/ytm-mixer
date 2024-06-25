@@ -38,7 +38,6 @@
 
 	async function ytmClientInfo() {
 		const info = await YTM.getYtmClientInfo();
-		console.log(info);
 	}
 </script>
 

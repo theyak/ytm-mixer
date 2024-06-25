@@ -271,7 +271,7 @@
 </div>
 
 
-<div id="queue" class="fixed h-full w-full bg-black" style="--position: {queuePosition}">
+<div id="queue" class="fixed h-full w-full bg-black text-white" style="--position: {queuePosition}">
 	<div class="flex flex-row gap-4 h-full max-h-full">
 		<div id="player" style="width: 50%" class="self-center"/>
 		<div id="list" style="width: 50%" class="self-start px-2 scroller">
@@ -284,7 +284,7 @@
 					on:keypress={() => {}}
 				>
 					<img style="width:60px; height:60px" src={track.thumbnails[0].url} alt="thumbnail" />
-					<div class="flex flex-row justify-between w-full text-white">
+					<div class="flex flex-row justify-between w-full">
 						<div>
 							<div class="title strong">{track.title}</div>
 							<div>

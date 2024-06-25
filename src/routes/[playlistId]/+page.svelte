@@ -176,7 +176,6 @@
 
 	function exportJson() {
 		const data = JSON.stringify(playlist, null, 2);
-		console.log(data);
 	}
 </script>
 
@@ -210,7 +209,7 @@
 					<div>
 
 						<button class="px-4 py-1 mr-3 border-solid dark:border-gray-100 border-gray-900 border">
-							<a href="data:text/json;charset=utf-8,{encodeURIComponent(JSON.stringify(playlist))}" download="{playlist.title}.json">Export JSON</a>
+							<a href="data:text/json;charset=utf-8,{encodeURIComponent(JSON.stringify(playlist, null, 2))}" download="{playlist.title}.json">Export JSON</a>
 						</button>
 
 						<button class="px-4 py-1 mr-3 border-solid dark:border-gray-100 border-gray-900 border" on:click={shuffleTracks}>Shuffle</button>

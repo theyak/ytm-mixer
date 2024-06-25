@@ -46,7 +46,7 @@
 	}
 </script>
 
-<Modal title="OAuth Login" class="w-96" bind:open autoclose on:hide={() => dispatch("close")}>
+<Modal title="YouTube Music Login" class="w-96" bind:open autoclose on:hide={() => dispatch("close")}>
 	<p>
 		Press the button below AFTER you have logged in to YouTube Music.
 	</p>
