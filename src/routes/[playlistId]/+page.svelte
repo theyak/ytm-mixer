@@ -33,10 +33,10 @@
 	 */
 	async function loadTracks(id, refresh = false) {
 
-		// if (!refresh && sessionStorage.getItem(`playlist-${id}`)) {
-		// 	playlist = JSON.parse(sessionStorage.getItem(`playlist-${id}`));
-		// 	return;
-		// }
+		if (!refresh && sessionStorage.getItem(`playlist-${id}`)) {
+			playlist = JSON.parse(sessionStorage.getItem(`playlist-${id}`));
+			return;
+		}
 
 		let requests = 1;
 
