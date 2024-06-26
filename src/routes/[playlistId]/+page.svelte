@@ -43,7 +43,7 @@
 		playlist = await YTM.getTracks(id, 100);
 
 		if (playlist.error) {
-			console.log(playlist.error);
+			console.log("Error!", playlist.error);
 			playlist = {
 				id: $page.params.playlistId,
 				tracks: [],
@@ -62,7 +62,6 @@
 
 		while (playlist && canContinue && continuation && requests < maxRequests) {
 			const next = await YTM.getTrackContinuations(id, continuation);
-			console.log(next);
 			if (playlist && canContinue) {
 				requests++;
 				$progress = (requests / maxRequests) * 100;
