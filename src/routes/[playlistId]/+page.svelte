@@ -33,16 +33,17 @@
 	 */
 	async function loadTracks(id, refresh = false) {
 
-		if (!refresh && sessionStorage.getItem(`playlist-${id}`)) {
-			playlist = JSON.parse(sessionStorage.getItem(`playlist-${id}`));
-			return;
-		}
+		// if (!refresh && sessionStorage.getItem(`playlist-${id}`)) {
+		// 	playlist = JSON.parse(sessionStorage.getItem(`playlist-${id}`));
+		// 	return;
+		// }
 
 		let requests = 1;
 
 		playlist = await YTM.getTracks(id, 100);
 
 		if (playlist.error) {
+			console.log(playlist.error);
 			playlist = {
 				id: $page.params.playlistId,
 				tracks: [],
@@ -56,11 +57,12 @@
 			canContinue = true;
 		}
 
-		const trackCount = playlist.trackCount;
+		const trackCount = playlist.trackCount.replace(",", "");
 		const maxRequests = Math.ceil(trackCount / 100);
 
 		while (playlist && canContinue && continuation && requests < maxRequests) {
 			const next = await YTM.getTrackContinuations(id, continuation);
+			console.log(next);
 			if (playlist && canContinue) {
 				requests++;
 				$progress = (requests / maxRequests) * 100;
