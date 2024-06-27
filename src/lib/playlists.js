@@ -34,5 +34,24 @@ export default [
 				url: "https://lh3.googleusercontent.com/VNZ-8PPGDKOOa9jfHRyFd9j6wl75UWfqqCblKq5y4jnHHY9CWPkRAVXrfXSz6Bb75kmGo59Whp8VcGc=w544-h544-l90-rj",
 			}
 		]
+	},
+	{
+		count: "52",
+		playlistId: "RDCLAK5uy_n_YC6IpxbSTLHSPM7k_Popa4N1RUYuivU",
+		title: "Broadway Ballads",
+		thumbnails: [
+			{
+				url: "https://lh3.googleusercontent.com/wXZgX2eRewl5m-SmiqtNFi3MUvC59eyuhd19i4k9zujcBMD9qCpZEZfN6-MWfBpvq55xv5ifAXDGmgw=w544-h544-l90-rj"
+			},
+		]
+	},
+	{
+		playlistId: "PLXEg1KA5o1XlTxYy2_rX72MiQcsJzqdHi",
+		title: "Best Movie Soundtracks For Studying",
+		thumbnails: [
+			{
+				url: "https://yt3.googleusercontent.com/F2z_2cdMi_rd1EY98r9-vEMXVHOAA-Dy64GSiW5JsLTUkRXWa5MUuWKUIoy_o6lyLly_YjrngCw6=s192"
+			}
+		]
 	}
 ];

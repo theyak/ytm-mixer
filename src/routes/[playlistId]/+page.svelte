@@ -190,7 +190,12 @@
 				<div class="flex justify-between">
 					<div class="flex flex-row gap-4 items-start">
 						{#if playlist.thumbnails}
-							<img src={playlist.thumbnails[0].url} alt="Playlist thumbnail" style={`width: ${playlist.thumbnails[0].width}px; height: ${playlist.thumbnails[0].height}px`} />
+							<img
+								crossorigin="anonymous"
+								referrerpolicy="no-referrer"
+								src={playlist.thumbnails[0].url}
+								alt="Playlist thumbnail"
+								style={`width: ${playlist.thumbnails[0].width}px; height: ${playlist.thumbnails[0].height}px`} />
 						{/if}
 						<div>
 							<div class="text-4xl mb-4">{playlist.title}</div>
@@ -207,17 +212,16 @@
 							{/if}
 						</div>
 					</div>
-					<div>
-
-						<button class="px-4 py-1 mr-3 border-solid dark:border-gray-100 border-gray-900 border">
+					<div class="flex flex-row gap-6 items-start">
+						<button>
 							<a href="data:text/json;charset=utf-8,{encodeURIComponent(JSON.stringify(playlist, null, 2))}" download="{playlist.title}.json">Export JSON</a>
 						</button>
 
-						<button class="px-4 py-1 mr-3 border-solid dark:border-gray-100 border-gray-900 border" on:click={shuffleTracks}>Shuffle</button>
+						<button on:click={shuffleTracks}>Shuffle</button>
 						{#if $isLoggedIn}
-							<button class="px-4 py-1 mr-3 border-solid dark:border-gray-100 border-gray-900 border" on:click={() => {saveModal = true}}>Save</button>
+							<button on:click={() => {saveModal = true}}>Save</button>
 						{/if}
-						<button class="px-4 py-1 border-solid dark:border-gray-100 border-gray-900 border" on:click={() => loadTracks(playlist.id, true)}>Refresh</button>
+						<button on:click={() => loadTracks(playlist.id, true)}>Refresh</button>
 					</div>
 				</div>
 				<Tracks tracks={playlist.tracks} />

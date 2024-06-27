@@ -74,9 +74,9 @@
 	}
 
 	onMount(() => {
-		player = new YT.Player('player', {
-			width: "40%",
-			// videoId: $currentTrack.videoId,
+		player = new YT.Player("player", {
+			width: "auto",
+			height: "auto",
 			playerVars: {
 				playsinline: 1
 			},
@@ -270,15 +270,14 @@
 	</div>
 </div>
 
-
 <div id="queue" class="fixed h-full w-full bg-black text-white" style="--position: {queuePosition}">
 	<div class="flex flex-row gap-4 h-full max-h-full">
-		<div id="player" style="width: 50%" class="self-center"/>
-		<div id="list" style="width: 50%" class="self-start px-2 scroller">
+		<div id="player" style="width: 60%;height:100%" class="self-center"/>
+		<div id="list" style="width: 40%" class="self-start px-2 scroller">
 			{#each $queue as track}
 				<div
 					id="track-{track.videoId}"
-					class="track p-2 flex flex-row gap-4 border-b-slate-200 dark:border-b-slate-800 items-center cursor-pointer"
+					class="track p-2 flex flex-row gap-4 border-b-slate-600 dark:border-b-slate-400 items-center cursor-pointer"
 					class:playing={videoId === track.videoId}
 					on:click={() => setVideo(track.videoId)}
 					on:keypress={() => {}}

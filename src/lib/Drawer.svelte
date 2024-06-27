@@ -1,20 +1,21 @@
 <script>
-	import { Drawer, CloseButton } from 'flowbite-svelte';
+// http://localhost:5173/VLPLHGacQefgSsvOpgN2_9EXpL0hhvTpqr4f/
+import { Drawer, CloseButton } from 'flowbite-svelte';
 	import { sineIn } from 'svelte/easing';
-	import { hideDrawer, playlists, login, queue, progress, isLoggedIn } from '$lib/stores';
+	import { hideDrawer, playlists, login, queue, progress, isLoggedIn, oAuthModalOne } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import SvgIcon from "./components/SvgIcon.svelte";
 	import * as YTM from '$lib/ytm.js';
+	import defaultPlaylists from "$lib/playlists.js";
 
 	onMount(async () => {
 		$playlists = await YTM.getPlaylists();
+
 		if ($playlists.error) {
-			$playlists = [];
-			$login = true;
+			$playlists = defaultPlaylists;
 			$isLoggedIn = false;
 		} else {
 			$isLoggedIn = true;
-			$login = false;
 		}
 	});
 
@@ -25,15 +26,13 @@
 	};
 
 	function prepLogin() {
-		localStorage.removeItem("x-ytm-cookie");
-		localStorage.removeItem("x-ytm-user");
 		localStorage.removeItem("oauth-token");
 		$playlists = [];
 		$queue = [];
 		$hideDrawer = true;
 		$progress = -1;
 		$isLoggedIn = false;
-		$login = true;
+		$oAuthModalOne = true;
 	}
 
 	async function ytmClientInfo() {
