@@ -23,6 +23,13 @@
         Once you've logged in, come back to this page and click the 'Continue'
 		button.
 	</p>
+	<p>
+		If a new tab does not open, go to
+		<a href="https://ytmixer.netlify.app/login">https://ytmixer.netlify.app/login</a>,
+		the login into YouTube Music, and then once again go to
+		<a href="https://ytmixer.netlify.app/login">https://ytmixer.netlify.app/login</a>
+		to complete the sign in process.
+	</p>
 
 	<svelte:fragment slot="footer">
 		<Button on:click={openYoutubeLogin}>Continue</Button>
