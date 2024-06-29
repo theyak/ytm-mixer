@@ -1,6 +1,6 @@
 <script>
-// http://localhost:5173/VLPLHGacQefgSsvOpgN2_9EXpL0hhvTpqr4f/
-import { Drawer, CloseButton } from 'flowbite-svelte';
+	// http://localhost:5173/VLPLHGacQefgSsvOpgN2_9EXpL0hhvTpqr4f/
+	import { Drawer, CloseButton } from 'flowbite-svelte';
 	import { sineIn } from 'svelte/easing';
 	import { hideDrawer, playlists, login, queue, progress, isLoggedIn, oAuthModalOne } from '$lib/stores';
 	import { onMount } from 'svelte';
@@ -29,10 +29,10 @@ import { Drawer, CloseButton } from 'flowbite-svelte';
 		localStorage.removeItem("oauth-token");
 		$playlists = [];
 		$queue = [];
-		$hideDrawer = true;
 		$progress = -1;
+		$hideDrawer = true;
 		$isLoggedIn = false;
-		$oAuthModalOne = true;
+		window.location.href = "/login";
 	}
 
 	async function ytmClientInfo() {
@@ -52,13 +52,13 @@ import { Drawer, CloseButton } from 'flowbite-svelte';
 		<button on:click={() => prepLogin()} class="ml-2 h-6 leading-6">{$isLoggedIn ? "Logout" : "Login"}</button>
 	</div>
 
-	<div class="h-10 flex">
+	<!-- <div class="h-10 flex">
 		<SvgIcon>
 			<path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
 			<path d="M11 11h2v6h-2zm0-4h2v2h-2z"></path>
 		</SvgIcon>
 		<button on:click={() => ytmClientInfo()} class="ml-2 h-6 leading-6">YTMClient Info (to console)</button>
-	</div>
+	</div> -->
 
 	{#if $playlists && $playlists.length > 0}
 		<div class="h-10 flex">
@@ -68,10 +68,10 @@ import { Drawer, CloseButton } from 'flowbite-svelte';
 		</SvgIcon>
 		<span class="ml-2 h-6 leading-6">Playlists</span>
 		</div>
-		{#each $playlists as list}
-			<div class="h-8 flex ml-8">
+		<div class="flex flex-col gap-4">
+			{#each $playlists as list}
 				<a href={`/${list.playlistId}`}>{list.title}</a>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	{/if}
 </Drawer>
