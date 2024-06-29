@@ -5,7 +5,7 @@
 	import Drawer from "$lib/Drawer.svelte";
 	import SvgIcon from "$lib/components/SvgIcon.svelte";
 	import Player from "./Player.svelte"
-	import { hideDrawer, queue } from "$lib/stores";
+	import { hideDrawer, queue, isLoggedIn } from "$lib/stores";
 
 	let aboutModal = false;
 </script>
@@ -19,7 +19,7 @@
 
 <AboutModal open={aboutModal} on:close={() => aboutModal = false} />
 
-<div class="flex flex-col w-screen h-screen">
+<div id="header" class="flex flex-col w-screen h-screen">
 	<header class="flex-shrink-0 pl-2 bg-gray-300 dark:bg-gray-700">
 		<div class="flex flex-row justify-between">
 			<button class="ml-1" on:click={() => $hideDrawer = !$hideDrawer}>
@@ -28,7 +28,12 @@
 				</SvgIcon>
 			</button>
 			<a href="/">YouTube Music Mixer</a>
-			<button class="mr-6" on:click={() => aboutModal = true}>About</button>
+			<div>
+				<button class="mr-6" on:click={() => aboutModal = true}>About</button>
+				{#if !$isLoggedIn}
+					<a href="/login" class="mr-6">Login</a>
+				{/if}
+			</div>
 		</div>
 	</header>
 	<Drawer />

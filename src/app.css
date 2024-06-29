@@ -37,7 +37,7 @@ body.fontLoaded {
 }
 
 body a {
-	color: blue;
+	@apply text-blue-800 dark:text-blue-400;
 }
 
 .btn {
@@ -50,4 +50,8 @@ body a {
 
 .btn-blue:hover {
 	@apply bg-blue-700;
+}
+
+header a {
+	@apply dark:text-slate-200 text-slate-800;
 }

@@ -19,7 +19,7 @@ export const oAuthModalTwo = writable(false);
 /**
  * Flag indicating if user is successfully signed in to YouTube Music
  */
-export const isLoggedIn = writable(false);
+export const isLoggedIn = writable(!!localStorage.getItem("oauth-token"));
 
 /**
  * Progress bar for various things. Negative value to hide.
