@@ -178,6 +178,11 @@ export async function getPlaylists() {
 	return response;
 }
 
+export async function getAccount() {
+	const response = await get("/api/account");
+	return response;
+}
+
 /**
  * Get tracks from playlist
  *

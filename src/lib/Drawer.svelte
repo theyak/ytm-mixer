@@ -34,10 +34,6 @@
 		$isLoggedIn = false;
 		window.location.href = "/login";
 	}
-
-	async function ytmClientInfo() {
-		const info = await YTM.getYtmClientInfo();
-	}
 </script>
 
 <Drawer transitionType="fly" {transitionParams} bind:hidden={$hideDrawer} id="sidebar1">
@@ -51,14 +47,6 @@
 		</SvgIcon>
 		<button on:click={() => prepLogin()} class="ml-2 h-6 leading-6">{$isLoggedIn ? "Logout" : "Login"}</button>
 	</div>
-
-	<!-- <div class="h-10 flex">
-		<SvgIcon>
-			<path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
-			<path d="M11 11h2v6h-2zm0-4h2v2h-2z"></path>
-		</SvgIcon>
-		<button on:click={() => ytmClientInfo()} class="ml-2 h-6 leading-6">YTMClient Info (to console)</button>
-	</div> -->
 
 	{#if $playlists && $playlists.length > 0}
 		<div class="h-10 flex">
